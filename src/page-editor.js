@@ -5,31 +5,45 @@ class PageEditor extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            "changed": false
+        };
+
         this.bind("handlePageChange");
+    }
+
+    isChanged(next, previous) {
+        return JSON.stringify(next) !== JSON.stringify(previous)
+    }
+
+    componentWillReceiveProps(props) {
+        this.setState({
+            "changed": this.isChanged(props, this.props)
+        });
     }
 
     render() {
         return <div>
+            {this.state.changed ? "*" : ""}
             <div>
-            <input
-                type="text"
-                onChange={this.handlePageChange}
-                name="title"
-                value={this.props.title}
-                />
+                <input
+                    type="text"
+                    onChange={this.handlePageChange}
+                    name="title"
+                    value={this.props.title}
+                    />
             </div>
             <div>
-            <input
-                type="text"
-                onChange={this.handlePageChange}
-                name="segment"
-                value={this.props.segment}
-                />
+                <input
+                    type="text"
+                    onChange={this.handlePageChange}
+                    name="body"
+                    value={this.props.body}
+                    />
             </div>
-            <a
-                href="#"
+            <button
                 onClick={this.props.onPageCancel}
-                >cancel</a>
+                >cancel</button>
         </div>;
     }
 

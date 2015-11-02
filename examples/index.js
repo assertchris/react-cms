@@ -10,61 +10,59 @@ class Backend {
     constructor() {
         this.deleted = [];
         this.updates = [];
-    }
 
-    all() {
-        return [
+        this.pages = [
             {
                 "id": 1,
                 "title": "Home",
-                "segment": "home",
-                "body": "This is the home page"
+                "body": "..."
             },
             {
                 "id": 2,
                 "title": "About Us",
-                "segment": "about-us",
-                "body": "This is the about us page"
+                "body": "..."
             },
             {
                 "id": 3,
                 "title": "Contact Us",
-                "segment": "contact-us",
-                "body": "This is the contact us page"
+                "body": "..."
             },
             {
                 "id": 4,
                 "title": "Products",
-                "segment": "products",
-                "body": "This is the products page"
-            },
-            {
-                "id": 5,
-                "title": "Burning Baskets",
-                "segment": "burning-baskets",
-                "body": "This is a page dedicated to burning baskets"
+                "body": "..."
             }
-        ]
-            .filter((page) => this.deleted.indexOf(page.id) == -1)
-            .map((page) => {
-                var modified = page;
+        ];
+    }
 
-                this.updates.forEach((update) => {
-                    if (update[0] == page.id) {
-                        modified[update[1]] = update[2];
-                    }
-                });
+    filter(page) {
+        return this.deleted.indexOf(page.id) == -1
+    }
 
-                return modified;
-            });
+    mapper(page) {
+        var modified = page;
+
+        this.updates.forEach((update) => {
+            if (update[0] == page.id) {
+                modified[update[1]] = update[2];
+            }
+        });
+
+        return modified;
+    }
+
+    all() {
+        return this.pages
+            .filter(this.filter.bind(this))
+            .map(this.mapper.bind(this));
+    }
+
+    update(id, property, value) {
+        this.updates.push([id, property, value]);
     }
 
     delete(id) {
         this.deleted.push(id);
-    }
-
-    update(id, field, value) {
-        this.updates.push([id, field, value]);
     }
 }
 

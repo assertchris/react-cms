@@ -6,11 +6,21 @@ class PageListItem extends Component {
         super(props);
     }
 
+    isChanged(next, previous) {
+        return JSON.stringify(next) !== JSON.stringify(previous)
+    }
+
+    shouldComponentUpdate(props, state) {
+        return this.isChanged(props, this.props);
+    }
+
     render() {
         return <div>
             {this.props.title}
-            <a href="#" onClick={this.props.onPageEdit}>edit</a>
-            <a href="#" onClick={this.props.onPageDelete}>delete</a>
+            &nbsp;
+            <button onClick={this.props.onPageEdit}>edit</button>
+            &nbsp;
+            <button onClick={this.props.onPageDelete}>delete</button>
         </div>;
     }
 }
