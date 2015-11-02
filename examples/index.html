@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/node_modules/babel-core/browser.js"></script>
+        <script src="/node_modules/systemjs/dist/system.js"></script>
+        <script>
+            System.config({
+                "transpiler": "babel",
+                "map": {
+                    "react": "/examples/react/react",
+                    "react-dom": "/examples/react/react-dom",
+                    "react-cms/component": "/src/component",
+                    "react-cms/page-admin": "/src/page-admin",
+                    "react-cms/page": "/src/page",
+                    "react-cms/page-editor": "/src/page-editor",
+                    "react-cms/page-list-item": "/src/page-list-item"
+                },
+                "defaultJSExtensions": true
+            });
+
+            System.import("index");
+        </script>
+    </head>
+    <body>
+        <div class="react"></div>
+    </body>
+</html>
