@@ -1,7 +1,7 @@
 import React from "react";
 import Component from "react-cms/component";
 import PageEditor from "react-cms/page-editor";
-import PageListItem from "react-cms/page-list-item";
+import PageView from "react-cms/page-view";
 
 class Page extends Component {
     constructor(props) {
@@ -26,7 +26,7 @@ class Page extends Component {
                 />;
         }
 
-        return <PageListItem
+        return <PageView
             {...this.props}
             onPageEdit={this.handlePageEdit}
             onPageDelete={this.handlePageDelete}

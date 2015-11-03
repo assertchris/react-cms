@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import PageAdmin from "react-cms/page-admin";
 import Page from "react-cms/page";
 import PageEditor from "react-cms/page-editor";
-import PageListItem from "react-cms/page-list-item";
+import PageView from "react-cms/page-view";
 
 class Backend {
     constructor() {

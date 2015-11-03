@@ -1,7 +1,7 @@
 import React from "react";
 import Component from "react-cms/component";
 
-class PageListItem extends Component {
+class PageView extends Component {
     constructor(props) {
         super(props);
     }
@@ -25,9 +25,9 @@ class PageListItem extends Component {
     }
 }
 
-PageListItem.propTypes = {
+PageView.propTypes = {
     // "myProperty": React.PropTypes.string
     // "myShape": React.PropTypes.shape({})
 };
 
-export default PageListItem;
+export default PageView;

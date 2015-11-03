@@ -1,0 +1,7 @@
+{
+    "require": {
+        "amphp/aerys": "dev-master"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
