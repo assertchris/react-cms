@@ -13,8 +13,20 @@ class PageAdmin extends Component {
         );
 
         this.state = {
-            "pages": this.props.backend.all()
+            "pages": []
         };
+
+        this.props.backend.on("open", (event) => {
+            this.props.backend.all();
+        });
+
+        this.props.backend.on("data", (event, data) => {
+            console.log(event.data);
+
+            this.setState({
+                "pages": data
+            });
+        });
     }
 
     render() {
@@ -38,18 +50,10 @@ class PageAdmin extends Component {
 
     handlePageUpdate(id, field, value) {
         this.props.backend.update(id, field, value);
-
-        this.setState({
-            "pages": this.props.backend.all()
-        });
     }
 
     handlePageDelete(id) {
         this.props.backend.delete(id);
-
-        this.setState({
-            "pages": this.props.backend.all()
-        });
     }
 }
 

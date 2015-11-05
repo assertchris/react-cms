@@ -16,5 +16,8 @@
       "<rootDir>/node_modules/react"
     ],
     "bail": true
+  },
+  "dependencies": {
+    "eventemitter3": "^1.1.1"
   }
 }
