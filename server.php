@@ -140,5 +140,8 @@ $backend = new Backend();
 
 $router->get("/ws", Aerys\websocket($backend));
 
+// replace node.js serve dependency
+$root = Aerys\root(__DIR__); // TODO serve from non-git path
+
 $host = new Aerys\Host();
-$host->expose("127.0.0.1", 8000)->use($router);
+$host->expose("127.0.0.1", 8000)->use($router)->use($root);
