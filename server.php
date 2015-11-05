@@ -95,7 +95,7 @@ class Backend implements Aerys\Websocket
 
     private function all()
     {
-        return array_map(
+        return array_values(array_map(
             function($page) {
                 $modified = $page;
 
@@ -116,7 +116,7 @@ class Backend implements Aerys\Websocket
 
                 return true;
             })
-        );
+        ));
     }
 
     public function onClose(int $clientId, int $code, string $reason)
