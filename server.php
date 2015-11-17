@@ -95,7 +95,7 @@ class Backend implements Aerys\Websocket
 
     private function all()
     {
-        return array_map(
+        return array_values(array_map(
             function($page) {
                 $modified = $page;
 
@@ -116,7 +116,7 @@ class Backend implements Aerys\Websocket
 
                 return true;
             })
-        );
+        ));
     }
 
     public function onClose(int $clientId, int $code, string $reason)
@@ -140,5 +140,8 @@ $backend = new Backend();
 
 $router->get("/ws", Aerys\websocket($backend));
 
+// replace node.js serve dependency
+$root = Aerys\root(__DIR__); // TODO serve from non-git path
+
 $host = new Aerys\Host();
-$host->expose("127.0.0.1", 8000)->use($router);
+$host->expose("127.0.0.1", 8000)->use($router)->use($root);
