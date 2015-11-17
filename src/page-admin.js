@@ -32,7 +32,11 @@ class PageAdmin extends Component {
                 <ol>
                     <React.addons.CSSTransitionGroup transitionName="page" transitionEnterTimeout={150} transitionLeaveTimeout={150}>
                         {this.state.pages.map((page, i) => {
-                            return <li key={i}>
+                            var styles = {
+                                "margin": "10px 0"
+                            };
+
+                            return <li key={i} style={styles}>
                                 <Page
                                     {...page}
                                     onPageUpdate={this.handlePageUpdate}
