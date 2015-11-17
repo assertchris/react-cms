@@ -26,8 +26,9 @@ class PageView extends Component {
 }
 
 PageView.propTypes = {
-    // "myProperty": React.PropTypes.string
-    // "myShape": React.PropTypes.shape({})
+    "title": React.PropTypes.string.isRequired,
+    "onPageEdit": React.PropTypes.func.isRequired,
+    "onPageDelete": React.PropTypes.func.isRequired
 };
 
 export default PageView;

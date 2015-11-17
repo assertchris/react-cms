@@ -57,8 +57,11 @@ class PageEditor extends Component {
 }
 
 PageEditor.propTypes = {
-    // "myProperty": React.PropTypes.string
-    // "myShape": React.PropTypes.shape({})
+    "id": React.PropTypes.number.isRequired,
+    "title": React.PropTypes.string.isRequired,
+    "body": React.PropTypes.string.isRequired,
+    "onPageUpdate": React.PropTypes.func.isRequired,
+    "onPageCancel": React.PropTypes.func.isRequired
 };
 
 export default PageEditor;

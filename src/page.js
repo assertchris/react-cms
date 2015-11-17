@@ -37,13 +37,9 @@ class Page extends Component {
         this.setState({
             "isEditing": true
         });
-
-        console.log("time to edit a page");
     }
 
     handlePageDelete() {
-        console.log("time to delete a page", this.props.id);
-
         this.props.onPageDelete(this.props.id);
     }
 
@@ -51,14 +47,12 @@ class Page extends Component {
         this.setState({
             "isEditing": false
         });
-
-        console.log("time to cancel a page edit");
     }
 }
 
 Page.propTypes = {
-    // "myProperty": React.PropTypes.string
-    // "myShape": React.PropTypes.shape({})
+    "id": React.PropTypes.number.isRequired,
+    "onPageDelete": React.PropTypes.func.isRequired
 };
 
 export default Page;

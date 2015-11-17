@@ -1,51 +1,53 @@
 import React from "react";
 import Component from "react-cms/component";
 import Page from "react-cms/page";
+import LocalStoreBackend from "react-cms/local-store-backend";
 
 class PageAdmin extends Component {
     constructor(props) {
         super(props);
 
         this.bind(
-            "handlePageInsert",
+            "handlePageCreate",
             "handlePageUpdate",
             "handlePageDelete"
         );
 
         this.state = {
-            "pages": []
+            "pages": this.props.backend.all()
         };
 
-        this.props.backend.on("open", (event) => {
-            this.props.backend.all();
-        });
-
-        this.props.backend.on("data", (event, data) => {
-            console.log(event.data);
-
-            this.setState({
-                "pages": data
-            });
-        });
+        this.props.backend.on("update",
+            (pages) => this.setState({pages})
+        );
     }
 
     render() {
-        return <ol>
-            {this.state.pages.map((page, i) => {
-                return <li key={i}>
-                    <Page
-                        {...page}
-                        onPageInsert={this.handlePageInsert}
-                        onPageUpdate={this.handlePageUpdate}
-                        onPageDelete={this.handlePageDelete}
-                        />
-                </li>;
-            })}
-        </ol>;
+
+        return (
+            <React.addons.CSSTransitionGroup transitionName="page-admin" transitionAppear={true} transitionAppearTimeout={250}>
+                <div>
+                    <button onClick={this.handlePageCreate}>create new page</button>
+                </div>
+                <ol>
+                    <React.addons.CSSTransitionGroup transitionName="page" transitionEnterTimeout={150} transitionLeaveTimeout={150}>
+                        {this.state.pages.map((page, i) => {
+                            return <li key={i}>
+                                <Page
+                                    {...page}
+                                    onPageUpdate={this.handlePageUpdate}
+                                    onPageDelete={this.handlePageDelete}
+                                    />
+                            </li>;
+                        })}
+                    </React.addons.CSSTransitionGroup>
+                </ol>
+            </React.addons.CSSTransitionGroup>
+        );
     }
 
-    handlePageInsert() {
-        console.log("time to insert a page");
+    handlePageCreate() {
+        this.props.backend.create();
     }
 
     handlePageUpdate(id, field, value) {
@@ -58,8 +60,15 @@ class PageAdmin extends Component {
 }
 
 PageAdmin.propTypes = {
-    // "myProperty": React.PropTypes.string
-    // "myShape": React.PropTypes.shape({})
+    "backend": function(props, propName, componentName) {
+        if (props.backend instanceof LocalStoreBackend) {
+            return;
+        }
+
+        return new Error(
+            "Required prop `backend` is not a `Backend`."
+        );
+    }
 };
 
 export default PageAdmin;

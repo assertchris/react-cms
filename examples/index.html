@@ -7,20 +7,55 @@
             System.config({
                 "transpiler": "babel",
                 "map": {
-                    "react": "/examples/react/react",
+                    "react": "/examples/react/react-with-addons",
                     "react-dom": "/examples/react/react-dom",
                     "event-emitter": "../node_modules/eventemitter3/index",
                     "react-cms/component": "/src/component",
                     "react-cms/page-admin": "/src/page-admin",
                     "react-cms/page": "/src/page",
                     "react-cms/page-editor": "/src/page-editor",
-                    "react-cms/page-view": "/src/page-view"
+                    "react-cms/page-view": "/src/page-view",
+                    "react-cms/local-store": "/src/local-store",
+                    "react-cms/local-store-backend": "/src/local-store-backend",
+                    "react-cms/web-socket-backend": "/src/web-socket-backend",
                 },
                 "defaultJSExtensions": true
             });
 
             System.import("index");
         </script>
+        <style>
+            ol {
+                display: inline-block;
+            }
+            .page-enter {
+                opacity: 0.01;
+                margin-left: -50%;
+            }
+            .page-enter.page-enter-active {
+                opacity: 1;
+                margin-left: 0;
+                transition: all 150ms ease-in;
+            }
+            .page-leave {
+                opacity: 1;
+                margin-left: 0;
+            }
+            .page-leave.page-leave-active {
+                opacity: 0.01;
+                margin-left: 50%;
+                transition: all 150ms ease-in;
+            }
+            .page-admin-appear {
+                opacity: 0.01;
+                margin-left: -50%;
+            }
+            .page-admin-appear.page-admin-appear-active {
+                opacity: 1;
+                margin-left: 0;
+                transition: all 250ms ease-in;
+            }
+        </style>
     </head>
     <body>
         <div class="react"></div>
