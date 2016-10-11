@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/aerys.git",
-                "reference": "4e4c6dee1154104ced9724b32a4a204876522c0d"
+                "reference": "6db63db40bdcef414ce1446b6fbb0f7b850ca3e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/aerys/zipball/4e4c6dee1154104ced9724b32a4a204876522c0d",
-                "reference": "4e4c6dee1154104ced9724b32a4a204876522c0d",
+                "url": "https://api.github.com/repos/amphp/aerys/zipball/6db63db40bdcef414ce1446b6fbb0f7b850ca3e0",
+                "reference": "6db63db40bdcef414ce1446b6fbb0f7b850ca3e0",
                 "shasum": ""
             },
             "require": {
@@ -78,7 +78,7 @@
                 "server",
                 "websocket"
             ],
-            "time": "2015-11-02 21:40:23"
+            "time": "2015-11-04 02:20:18"
         },
         {
             "name": "amphp/amp",
